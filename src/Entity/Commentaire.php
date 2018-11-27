@@ -21,6 +21,12 @@ class Commentaire
      */
     private $value;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Saisie", inversedBy="saisies")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $saisie;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -34,6 +40,18 @@ class Commentaire
     public function setValue(string $value): self
     {
         $this->value = $value;
+
+        return $this;
+    }
+
+    public function getSaisie(): ?Saisie
+    {
+        return $this->saisie;
+    }
+
+    public function setSaisie(?Saisie $saisie): self
+    {
+        $this->saisie = $saisie;
 
         return $this;
     }
