@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Saisie{% endblock %}
+
+{% block body %}
+    <h1>Saisie</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ saisie.id }}</td>
+            </tr>
+            <tr>
+                <th>Value</th>
+                <td>{{ saisie.value }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ saisie.note }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('saisie_index') }}">back to list</a>
+
+    <a href="{{ path('saisie_edit', {'id': saisie.id}) }}">edit</a>
+
+    {{ include('saisie/_delete_form.html.twig') }}
+{% endblock %}

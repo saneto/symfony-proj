@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Saisie{% endblock %}
+
+{% block body %}
+    <h1>Edit Saisie</h1>
+
+    {{ include('saisie/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('saisie_index') }}">back to list</a>
+
+    {{ include('saisie/_delete_form.html.twig') }}
+{% endblock %}
