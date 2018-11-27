@@ -22,6 +22,25 @@ security:
             # http_basic: true
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
 
+            form_login:
+                check_path: app_front_security_login
+                login_path: app_front_security_login
+                csrf_token_generator: security.csrf.token_manager
+                default_target_path: app_front_default_home
+                provider: app_user_provider
+
+            logout:
+                path:   /logout
+                target: /
+            guard:
+                authenticators:
+                    - App\Security\LoginFormAuthenticator
+
+            # activate different ways to authenticate
+
+            # http_basic: true
+            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+
             # form_login: true
             # https://symfony.com/doc/current/security/form_login_setup.html
 
