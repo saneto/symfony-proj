@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Front;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -8,16 +8,19 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 /**
- * @Route("/Front", name="Front_")
+ * @Route("/", name="Front_")
  */
-class FrontController extends AbstractController
+class DefaultController extends AbstractController
 {
     /**
      *  @Route("/")
      */
     public function index()
     {
-       return $this->render('FrontView/Index.html.twig');
+
+        $array = [ "truc", "truc", "truc" ];
+
+        return $this->render('Front/Index.html.twig');
     }
 
     /**
@@ -25,7 +28,7 @@ class FrontController extends AbstractController
      */
     public function suivi()
     {
-        return $this->render('FrontView/Suivi.html.twig');
+        return $this->render('Front/Suivi.html.twig');
     }
 
     /**
@@ -33,7 +36,7 @@ class FrontController extends AbstractController
      */
     public function FAQ()
     {
-        return $this->render('FrontView/FAQ.html.twig');
+        return $this->render('Front/FAQ.html.twig');
     }
 
     /**
@@ -41,6 +44,6 @@ class FrontController extends AbstractController
      */
     public function saisie()
     {
-        return $this->render('FrontView/Saisir.html.twig');
+        return $this->render('Front/Saisir.html.twig');
     }
 }
