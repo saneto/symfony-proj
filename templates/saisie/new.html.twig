@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Saisie{% endblock %}
+
+{% block body %}
+    <h1>Create new Saisie</h1>
+
+    {{ include('saisie/_form.html.twig') }}
+
+    <a href="{{ path('saisie_index') }}">back to list</a>
+{% endblock %}
