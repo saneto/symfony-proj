@@ -33,7 +33,7 @@ class Saisie
     private $type;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Commentaire", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Commentaire", mappedBy="saisie")
      * @ORM\JoinColumn(nullable=false)
      */
     private $commentaire;
@@ -85,17 +85,37 @@ class Saisie
         return $this;
     }
 
-    public function getCommentaire(): ?Commentaire
+
+
+    public function getCommentaire(): Collection
     {
         return $this->commentaire;
     }
 
-    public function setCommentaire(Commentaire $commentaire): self
+    public function addCommentaire(Commentaire $commentaire): self
     {
-        $this->commentaire = $commentaire;
+        if (!$this->commentaire->contains($commentaire)) {
+            $this->commentaire[] = $commentaire;
+            $commentaire->setType($this);
+        }
 
         return $this;
     }
+
+    public function removecommentaire(Saisie $commentaire): self
+    {
+        if ($this->commentaire->contains($commentaire)) {
+            $this->commentaire->removeElement($commentaire);
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getType() === $this) {
+                $commentaire->setType(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 
     public function getAvancement(): ?Avancement
     {
