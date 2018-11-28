@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Saisie;
-use App\Form\Saisie1Type;
+use App\Form\SaisieType;
 use App\Repository\SaisieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,7 +29,7 @@ class SaisieController extends AbstractController
     public function new(Request $request): Response
     {
         $saisie = new Saisie();
-        $form = $this->createForm(Saisie1Type::class, $saisie);
+        $form = $this->createForm(SaisieType::class, $saisie);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -43,6 +45,16 @@ class Saisie
      * @ORM\JoinColumn(nullable=false)
      */
     private $avancement;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="list_des_saisies")
+     */
+    private $createBy;
+
+    public function __construct()
+    {
+        $this->createBy = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -125,6 +137,37 @@ class Saisie
     public function setAvancement(Avancement $avancement): self
     {
         $this->avancement = $avancement;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getCreateBy(): Collection
+    {
+        return $this->createBy;
+    }
+
+    public function addCreateBy(User $createBy): self
+    {
+        if (!$this->createBy->contains($createBy)) {
+            $this->createBy[] = $createBy;
+            $createBy->setListDesSaisies($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCreateBy(User $createBy): self
+    {
+        if ($this->createBy->contains($createBy)) {
+            $this->createBy->removeElement($createBy);
+            // set the owning side to null (unless already changed)
+            if ($createBy->getListDesSaisies() === $this) {
+                $createBy->setListDesSaisies(null);
+            }
+        }
 
         return $this;
     }
